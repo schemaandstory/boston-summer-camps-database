@@ -10,11 +10,12 @@ The database currently contains information on approximately 30 summer camps, en
 
 ## Tools and Technologies
 
-- PostgreSQL
-- pgAdmin 4
-- SQL
-- Entity Relationship Diagrams (ERD)
-- Relational Database Design
+- **PostgreSQL** — Relational database management, data modeling, and SQL analysis
+- **pgAdmin 4** — Database administration and schema visualization
+- **SQL** — Joins, Common Table Expressions (CTEs), aggregations, filtering, and geographic calculations
+- **Power BI Desktop** — Data visualization, interactive dashboards, and reporting
+- **DAX** — Custom measures and analytical calculations
+- **GitHub** — Version control and project documentation
 
 ## Database Architecture
 
@@ -53,6 +54,64 @@ The database structure is available in [`sql/summercamps_schema.sql`](sql/summer
 
 This file contains the SQL definitions needed to recreate the underlying database structure without the original dataset.
 
+---
+
+## Analysis 01: Affordable Summer Camps Near Cambridge
+
+### Business Question
+
+Which summer camp programs cost less than $600 per week and are located within five miles of central Cambridge, Massachusetts?
+
+### Dashboard
+
+![Summer Camp Affordability Dashboard](screenshots/affordability_dashboard.png)
+
+**Explore the analysis:**
+
+- [View the SQL Analysis](sql/01_affordable_camps_within_5_miles.sql)
+- [Download the Power BI Report](powerbi/summer_camps_affordability.pbix)
+
+### Key Findings
+
+Using a sample of Boston-area summer camp programs, the analysis identified:
+
+- **26 qualifying programs** meeting the price and distance criteria
+- **12 distinct camps** represented among those programs
+- **$525 median weekly price** across qualifying program records
+
+The results demonstrate that families seeking geographically convenient summer programs encounter a range of pricing options, including programs substantially below the $600 weekly budget threshold.
+
+The dashboard allows users to filter results by program type (Arts, STEM, and Traditional) and compare individual programs by price and distance.
+
+### Methodology
+
+I used PostgreSQL to join program-level information with camp information and calculate geographic distances from a central Cambridge reference point.
+
+The SQL query uses:
+
+- **INNER JOIN** to combine related tables
+- **Common Table Expressions (CTEs)** to organize calculations
+- **Trigonometric functions** to estimate straight-line distances using latitude and longitude
+- **Conditional filtering** to identify programs below $600 per week and within five miles
+- **Sorting** to organize results by geographic proximity and price
+
+I imported the SQL query results into Power BI Desktop and developed an interactive dashboard featuring:
+
+- A scatter plot comparing weekly program prices and geographic distance
+- A detailed program comparison table
+- Interactive slicers for filtering by program type
+- DAX measures calculating qualifying program counts, distinct camps, and median weekly prices
+
+### Limitations
+
+- Distances are straight-line estimates rather than driving or public transit distances.
+- The dataset represents a selected sample of summer camps, not all available camps in Greater Boston.
+- Prices reflect the collected data and may not represent current fees or registration availability.
+- Age eligibility, program dates, and operating hours are not included in this initial analysis.
+- The median price is calculated across individual program records rather than weighting each camp equally.
+
+---
+
 ## Future Development
 
 Planned enhancements include:
@@ -60,9 +119,14 @@ Planned enhancements include:
 - Expanding geographic and program coverage
 - Developing Python-based data collection and updating workflows
 - Exploring AI-assisted extraction of structured information from camp websites
-- Creating analytical SQL queries to compare program offerings, schedules, and pricing
-- Developing reporting and visualization tools
+- Incorporating age eligibility, summer-week availability, and scheduling constraints into future analyses
+- Developing additional SQL analyses of program offerings, schedules, and pricing
+- Expanding Power BI reporting to support more detailed comparisons and interactive exploration
 
 ## Project Status
 
-Active development. Database architecture complete, with further data collection, validation, and analysis planned.
+**Active development.**
+
+The relational database architecture and first SQL/Power BI affordability analysis are complete.
+
+Future work includes expanding the dataset, validating program information, and developing additional analyses focused on age eligibility, scheduling, and summer-week availability.
