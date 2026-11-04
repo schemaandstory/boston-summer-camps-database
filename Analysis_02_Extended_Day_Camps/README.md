@@ -13,7 +13,7 @@ Using PostgreSQL and Power BI, it compares available daily coverage hours and st
 
 ## Power BI Dashboard
 
-![Extended-Day Summer Camp Dashboard](analysis_02_dashboard.png)
+![Extended-Day Summer Camp Dashboard](analysis_02_dashboard.png.png)
 
 ### Files
 
