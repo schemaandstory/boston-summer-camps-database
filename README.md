@@ -112,6 +112,18 @@ I imported the SQL query results into Power BI Desktop and developed an interact
 
 ---
 
+### Analysis 02: Extended-Day Summer Camp Options for Working Parents
+
+**Business question:** Which summer camp programs offer schedules compatible with working parents, and how do their coverage hours and standard tuition compare?
+
+Using PostgreSQL and Power BI, I identified 128 qualifying programs across 16 camps, with a maximum recorded daily coverage of 10.75 hours.
+
+The analysis includes SQL data validation, DAX measures, a comparison of daily coverage hours, and an examination of standard weekly tuition.
+
+[View Analysis 02](Analysis_02_Extended_Day_Camps/README.md)
+
+---
+
 ## Future Development
 
 Planned enhancements include:
